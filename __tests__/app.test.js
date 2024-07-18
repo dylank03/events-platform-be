@@ -53,4 +53,20 @@ describe('endpoint POST /login',()=>{
             expect(typeof body.user).toBe('string')
         })
     })
+    test('responds with 400 status and error message if password is incorrect',()=>{
+        return request(app)
+        .post('/login').send({email:'batman@batmail.com', password: 'password23'})
+        .expect(400)
+        .then(({body})=>{
+            expect(body).toEqual({ email: '', password: 'Incorrect password, try again' })
+        })
+    })
+    test('responds with 400 status and error message if email is not registered', ()=>{
+        return request(app)
+        .post('/login').send({email:'flash@flashmail.com', password: 'password23'})
+        .expect(400)
+        .then(({body})=>{
+            expect(body).toEqual({ email: 'This email is not registered', password: '' })
+        })
+    })
 })
