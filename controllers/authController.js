@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+
 const jwt = require('jsonwebtoken')
 
 const maxAge = 3 * 24 * 60 * 60
@@ -17,7 +18,12 @@ exports.register = (req,res, next)=>{
     .catch(next)
 }
 
-exports.login = (req, res)=>{
+exports.login = (req, res, next)=>{
     const{email, password} = req.body
-    res.send('login')
+    User.loginUser(email, password)
+    .then((user)=>{
+        const token = createToken(user._id)
+        res.cookie = ('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+        res.status(200).send({user: user._id})
+    }).catch(next)
 }
