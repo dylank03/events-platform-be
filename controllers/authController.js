@@ -24,6 +24,11 @@ exports.login = (req, res, next)=>{
     .then((user)=>{
         const token = createToken(user._id)
         res.cookie = ('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-        res.status(200).send({user: user._id})
+        res.status(201).send({user: user._id})
     }).catch(next)
+}
+
+exports.logout = (req, res)=>{
+    res.cookie('jwt', '', {maxAge: 1})
+    res.status(200).send('logged out')
 }

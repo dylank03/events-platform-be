@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const authRouter = require('./routers/auth-router')
-const requireAuth = require('./middleware/authMiddleware')
+const {requireAuth, checkUser} = require('./middleware/authMiddleware')
 
 const uri = "mongodb+srv://dylankataria:Ot9aktlwjQOIjgJw@cluster0.qfmplsd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
@@ -31,9 +31,10 @@ app.use((err, req, res, next)=>{
             errors[properties.path] = properties.message
         })
     }
+
     res.status(400).send(errors)
 })
 
-app.listen(9090)
-
 mongoose.connect(uri)
+
+module.exports = app
