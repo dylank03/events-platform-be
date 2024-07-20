@@ -8,8 +8,8 @@ const createToken = (id)=>{
 }
 
 exports.register = (req,res, next)=>{
-    const {email, password} = req.body
-    User.create({email, password})
+    const {firstName, lastName, email, password} = req.body
+    User.create({firstName, lastName, email, password})
     .then((user)=>{
         const token = createToken(user._id)
         res.cookie = ('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})

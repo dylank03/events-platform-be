@@ -6,11 +6,11 @@ const {Schema, model} = mongoose
 const userSchema = new Schema({
     firstName: {
         type: String,
-        required: [true]
+        required: [true, 'Please enter your first name']
     },
     lastName:{
         type: String,
-        required: [true]
+        required: [true, 'Please enter your last name']
     },
     email: {
         type: String,
