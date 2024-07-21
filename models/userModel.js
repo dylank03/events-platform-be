@@ -50,5 +50,4 @@ userSchema.statics.loginUser = async function(email, password){
 
 const User = model('user', userSchema)
 
-
 module.exports = User
