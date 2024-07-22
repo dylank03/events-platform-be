@@ -10,13 +10,12 @@ exports.getUser = (req, res, next)=>{
             }
             else{
                 let user = await User.findById(decodedToken.id)
-                res.status(200).send(user)
+                res.status(200).send({user})
                 next()
             }
         })
     }
     else{
-        res.locals.user = null
         next()
     }
 

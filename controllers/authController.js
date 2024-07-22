@@ -31,5 +31,4 @@ exports.login = (req, res, next)=>{
 exports.logout = (req, res, next)=>{
     res.cookie('jwt', '', {httpOnly: true, sameSite: 'None', secure:true, maxAge: 1})
     res.status(200).send('logged out')
-    
 }
