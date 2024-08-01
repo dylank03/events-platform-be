@@ -5,8 +5,9 @@ const cors = require('cors')
 const authRouter = require('./routers/auth-router')
 const {requireAuth, checkUser} = require('./middleware/authMiddleware')
 const userRouter = require('./routers/user-router')
+const eventsRouter = require('./routers/events-router')
 
-const uri = "mongodb+srv://dylankataria:Ot9aktlwjQOIjgJw@cluster0.qfmplsd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const uri = process.env.URI
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:5173'}))
 app.use(express.json())
 app.use(authRouter)
 app.use(userRouter)
+app.use(eventsRouter)
 
 
 app.use((err, req, res, next)=>{
