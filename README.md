@@ -1,4 +1,4 @@
-# Tech Test Backend
+# CoffeeConnect events platform Backend
 
 ## Instructions to run locally
 
