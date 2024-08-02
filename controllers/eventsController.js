@@ -24,5 +24,18 @@ exports.postEvent = (req, res)=>{
       .then((response) => {
         res.status(response.status).send(response.data)
       })
-      .catch((err)=> {console.log(err)})
+      .catch((err)=> {res.send(err)})
 }
+
+exports.getEvent = (req, res)=>{
+  axios.get(`https://www.eventbriteapi.com/v3/events/${req.params.eventId}/`, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      }
+    })
+    .then((response) => {
+      res.status(response.status).send(response.data)
+    })
+    .catch((err)=> {console.log(err)})
+}
+

@@ -23,7 +23,15 @@ const userSchema = new Schema({
         type: String,
         required: true, 
         minLength: [8, 'Password must contain at least 8 characters']
+    },
+    role: {
+        type: String,
+        required: true,
     }
+})
+
+userSchema.path('role').default(()=>{
+    return 'member'
 })
 
 userSchema.post('save', function(doc, next){

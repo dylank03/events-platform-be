@@ -1,8 +1,12 @@
 const eventsRouter = require('express').Router()
-const {getEvents, postEvent} = require('../controllers/eventsController')
+const {getEvents, postEvent, getEvent} = require('../controllers/eventsController')
+const { requireAuth, requireStaff } = require('../middleware/authMiddleware')
 
 eventsRouter.route('/events')
-    .get(getEvents)
-    .post(postEvent)
+    .get(requireAuth, getEvents)
+    .post(requireStaff, postEvent)
+
+eventsRouter.route('/event/:eventId')
+    .get(getEvent)
 
 module.exports = eventsRouter

@@ -43,6 +43,10 @@ app.use((err, req, res, next)=>{
     res.status(400).send(errors)
 })
 
+app.get('*', function(req, res){
+    res.status(404).send('page not found');
+  });
+
 app.listen(9090)
 
 mongoose.connect(uri)
