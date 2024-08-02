@@ -47,8 +47,6 @@ app.get('*', function(req, res){
     res.status(404).send('page not found');
   });
 
-app.listen(9090)
-
 mongoose.connect(uri)
 
 module.exports = app

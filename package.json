@@ -1,9 +1,10 @@
 {
-  "name": "cromwell-technical-test",
+  "name": "events-platform-be",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node listen.js",
     "test": "jest",
     "dev": "nodemon app.js"
   },
