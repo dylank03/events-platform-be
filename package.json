@@ -2,7 +2,7 @@
   "name": "events-platform-be",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "listen.js",
   "scripts": {
     "start": "node listen.js",
     "test": "jest",
