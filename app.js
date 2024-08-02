@@ -12,7 +12,7 @@ const uri = process.env.URI
 const app = express()
 
 app.use(cookieParser())
-app.use(cors({credentials: true, origin: ['http://localhost:5173', 'https://main--coffeeconnect.netlify.app/']}))
+app.use(cors({credentials: true, origin: 'https://coffeeconnect.netlify.app/'}))
 app.use(express.json())
 app.use(authRouter)
 app.use(userRouter)
