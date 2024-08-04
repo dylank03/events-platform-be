@@ -13,7 +13,7 @@ const app = express()
 app.use(cookieParser())
 app.use(cors({credentials: true, origin: 'https://coffeeconnect.netlify.app'}))
 app.use(express.json())
-
+app.use(authRouter)
 app.use(userRouter)
 app.use(eventsRouter)
 
@@ -42,9 +42,6 @@ app.use((err, req, res, next)=>{
     res.status(400).send(errors)
 })
 
-app.get('*', function(req, res){
-    res.status(404).send('page not found');
-  });
 
 mongoose.connect(uri)
 
