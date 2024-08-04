@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const User = require('../models/userModel')
+
 
 
 exports.requireAuth = (req, res, next) =>{
@@ -21,12 +23,14 @@ exports.requireAuth = (req, res, next) =>{
 exports.requireStaff = (req, res, next) =>{
     const token = req.cookies.jwt
     if(token){
-        jwt.verify(token, 'secret', (err, decodedToken)=>{
+        jwt.verify(token, 'secret', async (err, decodedToken)=>{
             if(err){
                 res.status(401).send('unauthorized')
             }
             else{
-                if(decodedToken.role === 'staff'){
+                let user = await User.findById(decodedToken.id)
+                if(user.role === 'staff'){
+
                     next()
                 }
                 else{
