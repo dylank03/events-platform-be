@@ -11,8 +11,9 @@ const uri = process.env.URI
 const app = express()
 
 app.use(cookieParser())
-app.use(cors({credentials: true, origin: 'https://coffeeconnect.netlify.app/home'}))
+app.use(cors({credentials: true, origin: 'https://coffeeconnect.netlify.app'}))
 app.use(express.json())
+
 app.use(userRouter)
 app.use(eventsRouter)
 
@@ -46,5 +47,7 @@ app.get('*', function(req, res){
   });
 
 mongoose.connect(uri)
+
+
 
 module.exports = app
